@@ -4,148 +4,300 @@
 
 @section('content')
 
-    <div class="flex items-center justify-between mb-8">
+    {{-- =========================================================
+         HEADER
+    ========================================================== --}}
+    <div class="mb-10">
 
-        <div>
-            <h1 class="text-3xl font-bold">
-                Categories
-            </h1>
+        <h1 class="text-3xl font-bold text-gray-900">
+            Categories
+        </h1>
 
-            <p class="text-gray-600 mt-2">
-                Organize tourist destinations into categories.
-            </p>
+        <p class="text-gray-600 mt-2">
+            Organize Lebanon's destinations into meaningful categories.
+        </p>
+
+    </div>
+
+
+    {{-- =========================================================
+         ADD CATEGORY
+    ========================================================== --}}
+    <section class="mb-12">
+
+        <div
+            class="bg-white
+                   border border-gray-200
+                   rounded-2xl
+                   shadow-sm
+                   p-6 md:p-8"
+        >
+
+            <div class="mb-6">
+
+                <h2 class="text-xl font-bold text-gray-900">
+                    Add Category
+                </h2>
+
+                <p class="text-gray-500 mt-1">
+                    Create a category for organizing destinations.
+                </p>
+
+            </div>
+
+
+            <form
+                action="{{ route('categories.store') }}"
+                method="POST"
+            >
+
+                @csrf
+
+
+                <div
+                    class="flex flex-col
+                           md:flex-row
+                           gap-4"
+                >
+
+                    <div class="flex-1">
+
+                        <label class="block font-medium text-gray-700 mb-2">
+                            Category Name
+                        </label>
+
+                        <input
+                            type="text"
+                            name="name"
+                            value="{{ old('name') }}"
+                            placeholder="Example: Historical"
+                            class="w-full
+                                   border border-gray-300
+                                   rounded-lg
+                                   px-4 py-3
+                                   focus:outline-none
+                                   focus:ring-2
+                                   focus:ring-green-600"
+                        >
+
+                        @error('name')
+                            <p class="text-red-600 text-sm mt-1">
+                                {{ $message }}
+                            </p>
+                        @enderror
+
+                    </div>
+
+
+                    <div class="md:self-end">
+
+                        <button
+                            type="submit"
+                            class="w-full md:w-auto
+                                   bg-green-700
+                                   text-white
+                                   px-7 py-3
+                                   rounded-lg
+                                   font-semibold
+                                   hover:bg-green-800
+                                   transition"
+                        >
+                            Add Category
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </form>
+
         </div>
 
-    </div>
+    </section>
 
 
-    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-8">
+    {{-- =========================================================
+         CATEGORY LIST
+    ========================================================== --}}
+    <section>
 
-        <h2 class="text-xl font-semibold mb-4">
-            Add Category
-        </h2>
+        <div class="mb-6">
 
-        <form action="{{ route('categories.store') }}"
-              method="POST">
+            <h2 class="text-2xl font-bold text-gray-900">
+                All Categories
+            </h2>
 
-            @csrf
-
-            <div class="mb-4">
-
-                <label class="block font-medium mb-2">
-                    Name
-                </label>
-
-                <input type="text"
-                       name="name"
-                       value="{{ old('name') }}"
-                       class="w-full border border-gray-300 rounded-lg px-4 py-2">
-
-                @error('name')
-                    <p class="text-red-600 text-sm mt-1">
-                        {{ $message }}
-                    </p>
-                @enderror
-
-            </div>
-
-
-            <div class="mb-4">
-
-                <label class="block font-medium mb-2">
-                    Description
-                </label>
-
-                <textarea name="description"
-                          rows="3"
-                          class="w-full border border-gray-300 rounded-lg px-4 py-2">{{ old('description') }}</textarea>
-
-            </div>
-
-
-            <button type="submit"
-                    class="bg-green-700 text-white px-5 py-2 rounded-lg hover:bg-green-800">
-
-                Add Category
-
-            </button>
-
-        </form>
-
-    </div>
-
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-        @forelse ($categories as $category)
-
-            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-
-                <h3 class="text-xl font-bold">
-                    {{ $category->name }}
-                </h3>
-
-                <p class="text-gray-600 mt-2">
-                    {{ $category->description ?: 'No description.' }}
-                </p>
-
-                <p class="mt-4 font-semibold text-green-700">
-                    {{ $category->places_count }}
-                    {{ $category->places_count === 1 ? 'Place' : 'Places' }}
-                </p>
-
-
-                <form action="{{ route('categories.update', $category) }}"
-                      method="POST"
-                      class="mt-6">
-
-                    @csrf
-                    @method('PUT')
-
-                    <input type="text"
-                           name="name"
-                           value="{{ $category->name }}"
-                           class="w-full border border-gray-300 rounded-lg px-3 py-2 mb-2">
-
-                    <textarea name="description"
-                              rows="2"
-                              class="w-full border border-gray-300 rounded-lg px-3 py-2 mb-3">{{ $category->description }}</textarea>
-
-                    <button type="submit"
-                            class="bg-blue-600 text-white px-4 py-2 rounded-lg">
-                        Update
-                    </button>
-
-                </form>
-
-
-                <form action="{{ route('categories.destroy', $category) }}"
-                      method="POST"
-                      class="mt-3">
-
-                    @csrf
-                    @method('DELETE')
-
-                    <button type="submit"
-                            onclick="return confirm('Are you sure you want to delete this category?')"
-                            class="text-red-600 hover:text-red-800">
-
-                        Delete
-
-                    </button>
-
-                </form>
-
-            </div>
-
-        @empty
-
-            <p class="text-gray-500">
-                No categories found.
+            <p class="text-gray-500 mt-1">
+                View and manage your destination categories.
             </p>
 
-        @endforelse
+        </div>
 
-    </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            @forelse ($categories as $category)
+
+                <article
+                    class="bg-white
+                           border border-gray-200
+                           rounded-2xl
+                           p-6
+                           shadow-sm
+                           hover:shadow-md
+                           transition"
+                >
+
+                    {{-- TOP --}}
+                    <div class="flex items-start justify-between gap-4">
+
+                        <div>
+
+                            <h3 class="text-xl font-bold text-gray-900">
+                                {{ $category->name }}
+                            </h3>
+
+
+                            <p class="text-gray-500 mt-2">
+
+                                {{ $category->places_count }}
+
+                                {{ $category->places_count == 1 ? 'Place' : 'Places' }}
+
+                            </p>
+
+                        </div>
+
+
+                        <div
+                            class="w-11 h-11
+                                   rounded-xl
+                                   bg-green-100
+                                   text-green-700
+                                   flex items-center
+                                   justify-center
+                                   font-bold"
+                        >
+                            {{ strtoupper(substr($category->name, 0, 1)) }}
+                        </div>
+
+                    </div>
+
+
+                    {{-- EDIT --}}
+                    <div class="mt-6 pt-5 border-t border-gray-100">
+
+                        <form
+                            action="{{ route('categories.update', $category) }}"
+                            method="POST"
+                        >
+
+                            @csrf
+                            @method('PUT')
+
+
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Rename Category
+                            </label>
+
+
+                            <div class="flex gap-2">
+
+                                <input
+                                    type="text"
+                                    name="name"
+                                    value="{{ $category->name }}"
+                                    class="min-w-0
+                                           flex-1
+                                           border border-gray-300
+                                           rounded-lg
+                                           px-3 py-2
+                                           focus:outline-none
+                                           focus:ring-2
+                                           focus:ring-blue-500"
+                                >
+
+
+                                <button
+                                    type="submit"
+                                    class="bg-blue-600
+                                           text-white
+                                           px-4 py-2
+                                           rounded-lg
+                                           font-semibold
+                                           hover:bg-blue-700
+                                           transition"
+                                >
+                                    Update
+                                </button>
+
+                            </div>
+
+                        </form>
+
+
+                        {{-- DELETE --}}
+                        <form
+                            action="{{ route('categories.destroy', $category) }}"
+                            method="POST"
+                            class="mt-3"
+                        >
+
+                            @csrf
+                            @method('DELETE')
+
+
+                            <button
+                                type="submit"
+                                onclick="return confirm('Are you sure you want to delete {{ $category->name }}?')"
+                                class="w-full
+                                       border border-red-200
+                                       text-red-600
+                                       px-4 py-2
+                                       rounded-lg
+                                       font-semibold
+                                       hover:bg-red-50
+                                       transition"
+                            >
+                                Delete Category
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </article>
+
+            @empty
+
+                <div
+                    class="md:col-span-2
+                           lg:col-span-3
+                           bg-white
+                           border border-gray-200
+                           rounded-2xl
+                           p-12
+                           text-center"
+                >
+
+                    <div class="text-4xl">
+                        🗂️
+                    </div>
+
+                    <h3 class="text-xl font-bold text-gray-900 mt-4">
+                        No categories yet
+                    </h3>
+
+                    <p class="text-gray-500 mt-2">
+                        Create your first category above.
+                    </p>
+
+                </div>
+
+            @endforelse
+
+        </div>
+
+    </section>
 
 @endsection

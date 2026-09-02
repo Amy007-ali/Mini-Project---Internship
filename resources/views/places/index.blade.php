@@ -14,14 +14,14 @@
         </h1>
 
         <p class="text-gray-600 mt-2">
-            Manage tourist attractions across Lebanon.
+            Manage and explore tourist attractions across Lebanon.
         </p>
 
     </div>
 
 
     {{-- =========================================================
-         ADD PLACE SECTION
+         ADD PLACE
     ========================================================== --}}
     <section class="mb-16">
 
@@ -34,7 +34,7 @@
                 </h2>
 
                 <p class="text-gray-500 mt-1">
-                    Add a new tourist destination to Lebanon Explorer.
+                    Add a new destination to Lebanon Explorer.
                 </p>
 
             </div>
@@ -52,7 +52,6 @@
                 {{-- NAME + REGION --}}
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-                    {{-- NAME --}}
                     <div>
 
                         <label class="block font-medium text-gray-700 mb-2">
@@ -65,8 +64,7 @@
                             value="{{ old('name') }}"
                             placeholder="Example: Jeita Grotto"
                             class="w-full border border-gray-300 rounded-lg px-4 py-3
-                                   focus:outline-none focus:ring-2 focus:ring-green-600
-                                   focus:border-transparent"
+                                   focus:outline-none focus:ring-2 focus:ring-green-600"
                         >
 
                         @error('name')
@@ -78,7 +76,6 @@
                     </div>
 
 
-                    {{-- REGION --}}
                     <div>
 
                         <label class="block font-medium text-gray-700 mb-2">
@@ -91,8 +88,7 @@
                             value="{{ old('region') }}"
                             placeholder="Example: Keserwan"
                             class="w-full border border-gray-300 rounded-lg px-4 py-3
-                                   focus:outline-none focus:ring-2 focus:ring-green-600
-                                   focus:border-transparent"
+                                   focus:outline-none focus:ring-2 focus:ring-green-600"
                         >
 
                         @error('region')
@@ -106,10 +102,9 @@
                 </div>
 
 
-                {{-- CATEGORY + ENTRY FEE --}}
+                {{-- CATEGORY + FEE --}}
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
 
-                    {{-- CATEGORY --}}
                     <div>
 
                         <label class="block font-medium text-gray-700 mb-2">
@@ -119,8 +114,7 @@
                         <select
                             name="category_id"
                             class="w-full border border-gray-300 rounded-lg px-4 py-3
-                                   focus:outline-none focus:ring-2 focus:ring-green-600
-                                   focus:border-transparent"
+                                   focus:outline-none focus:ring-2 focus:ring-green-600"
                         >
 
                             <option value="">
@@ -149,7 +143,6 @@
                     </div>
 
 
-                    {{-- ENTRY FEE --}}
                     <div>
 
                         <label class="block font-medium text-gray-700 mb-2">
@@ -164,8 +157,7 @@
                             value="{{ old('entry_fee') }}"
                             placeholder="Example: 10"
                             class="w-full border border-gray-300 rounded-lg px-4 py-3
-                                   focus:outline-none focus:ring-2 focus:ring-green-600
-                                   focus:border-transparent"
+                                   focus:outline-none focus:ring-2 focus:ring-green-600"
                         >
 
                         @error('entry_fee')
@@ -191,8 +183,7 @@
                         rows="4"
                         placeholder="Write a short description about the place..."
                         class="w-full border border-gray-300 rounded-lg px-4 py-3
-                               focus:outline-none focus:ring-2 focus:ring-green-600
-                               focus:border-transparent"
+                               focus:outline-none focus:ring-2 focus:ring-green-600"
                     >{{ old('description') }}</textarea>
 
                     @error('description')
@@ -211,6 +202,7 @@
                         Place Image
                     </label>
 
+
                     <div class="flex items-center gap-4 flex-wrap">
 
                         <input
@@ -227,6 +219,7 @@
                             "
                         >
 
+
                         <label
                             for="placeImage"
                             class="inline-flex items-center justify-center
@@ -237,6 +230,7 @@
                         >
                             Choose Image
                         </label>
+
 
                         <span
                             id="addImageName"
@@ -249,7 +243,7 @@
 
 
                     <p class="text-sm text-gray-500 mt-2">
-                        Accepted: JPG, JPEG, PNG, WEBP. Maximum size: 2MB.
+                        JPG, JPEG, PNG or WEBP. Maximum size: 2MB.
                     </p>
 
 
@@ -284,15 +278,16 @@
                 </div>
 
 
-                {{-- ADD BUTTON --}}
+                {{-- ADD --}}
                 <div class="mt-8">
 
                     <button
                         type="submit"
                         class="bg-green-700 text-white
                                px-7 py-3 rounded-lg
-                               font-medium
-                               hover:bg-green-800 transition"
+                               font-semibold
+                               hover:bg-green-800
+                               transition"
                     >
                         Add Place
                     </button>
@@ -308,7 +303,6 @@
 
     {{-- =========================================================
          EXPLORE PLACES
-         ID ADDED SO SEARCH RETURNS HERE
     ========================================================== --}}
     <section id="explore-places" class="scroll-mt-8">
 
@@ -319,14 +313,14 @@
             </h2>
 
             <p class="text-gray-500 mt-1">
-                Search, filter, edit, or remove existing destinations.
+                Search and manage existing destinations.
             </p>
 
         </div>
 
 
         {{-- =====================================================
-             SEARCH & FILTER
+             SEARCH
         ====================================================== --}}
         <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 mb-10">
 
@@ -350,8 +344,7 @@
                             value="{{ request('search') }}"
                             placeholder="Search by name or region..."
                             class="w-full border border-gray-300 rounded-lg px-4 py-3
-                                   focus:outline-none focus:ring-2 focus:ring-green-600
-                                   focus:border-transparent"
+                                   focus:outline-none focus:ring-2 focus:ring-green-600"
                         >
 
                     </div>
@@ -367,8 +360,7 @@
                         <select
                             name="category_id"
                             class="w-full border border-gray-300 rounded-lg px-4 py-3
-                                   focus:outline-none focus:ring-2 focus:ring-green-600
-                                   focus:border-transparent"
+                                   focus:outline-none focus:ring-2 focus:ring-green-600"
                         >
 
                             <option value="">
@@ -396,10 +388,12 @@
 
                         <button
                             type="submit"
-                            class="flex-1 bg-gray-900 text-white
+                            class="flex-1
+                                   bg-gray-900 text-white
                                    px-5 py-3 rounded-lg
-                                   font-medium
-                                   hover:bg-gray-800 transition"
+                                   font-semibold
+                                   hover:bg-gray-800
+                                   transition"
                         >
                             Search
                         </button>
@@ -407,10 +401,13 @@
 
                         <a
                             href="{{ route('places.index') }}#explore-places"
-                            class="px-5 py-3 rounded-lg
+                            class="px-5 py-3
+                                   rounded-lg
                                    border border-gray-300
-                                   text-gray-700 font-medium
-                                   hover:bg-gray-100 transition"
+                                   text-gray-700
+                                   font-medium
+                                   hover:bg-gray-100
+                                   transition"
                         >
                             Reset
                         </a>
@@ -425,77 +422,91 @@
 
 
         {{-- =====================================================
-             PLACES GRID
+             PLACE CARDS
         ====================================================== --}}
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
             @forelse ($places as $place)
 
-                <div
-                    class="bg-white rounded-2xl overflow-hidden
-                           border border-gray-200 shadow-sm"
+                <article
+                    class="bg-white
+                           rounded-2xl
+                           overflow-hidden
+                           border border-gray-200
+                           shadow-sm
+                           hover:shadow-lg
+                           transition-shadow
+                           duration-300"
                 >
 
-                    {{-- PLACE IMAGE --}}
-                    @if ($place->image)
+                    {{-- IMAGE --}}
+                    <div class="relative">
 
-                        <img
-                            src="{{ asset('storage/' . $place->image) }}"
-                            alt="{{ $place->name }}"
-                            class="w-full h-56 object-cover"
-                        >
+                        @if ($place->image)
 
-                    @else
+                            <img
+                                src="{{ asset('storage/' . $place->image) }}"
+                                alt="{{ $place->name }}"
+                                class="w-full h-56 object-cover"
+                            >
 
-                        <img
-                            src="{{ asset('images/place-placeholder.jpg') }}"
-                            alt="Place placeholder"
-                            class="w-full h-56 object-cover"
-                        >
+                        @else
 
-                    @endif
+                            <img
+                                src="{{ asset('images/place-placeholder.jpg') }}"
+                                alt="Place placeholder"
+                                class="w-full h-56 object-cover"
+                            >
+
+                        @endif
 
 
-                    {{-- CARD CONTENT --}}
+                        {{-- FEATURED BADGE --}}
+                        @if ($place->is_featured)
+
+                            <span
+                                class="absolute top-4 right-4
+                                       bg-white/95
+                                       text-yellow-700
+                                       text-xs font-bold
+                                       px-3 py-1.5
+                                       rounded-full
+                                       shadow-sm"
+                            >
+                                ★ Featured
+                            </span>
+
+                        @endif
+
+                    </div>
+
+
+                    {{-- INFORMATION --}}
                     <div class="p-6">
 
-                        <div class="flex items-start justify-between gap-4">
+                        <div>
 
-                            <div>
+                            <h3 class="text-xl font-bold text-gray-900">
+                                {{ $place->name }}
+                            </h3>
 
-                                <h3 class="text-xl font-bold text-gray-900">
-                                    {{ $place->name }}
-                                </h3>
-
-                                <p class="text-gray-500 mt-1">
-                                    {{ $place->region }}
-                                </p>
-
-                            </div>
-
-
-                            @if ($place->is_featured)
-
-                                <span
-                                    class="shrink-0
-                                           bg-yellow-100 text-yellow-800
-                                           text-xs font-semibold
-                                           px-3 py-1 rounded-full"
-                                >
-                                    Featured
-                                </span>
-
-                            @endif
+                            <p class="text-gray-500 mt-1">
+                                {{ $place->region }}
+                            </p>
 
                         </div>
 
 
                         {{-- CATEGORY --}}
                         <span
-                            class="inline-block mt-4
-                                   bg-green-100 text-green-800
-                                   text-sm font-medium
-                                   px-3 py-1 rounded-full"
+                            class="inline-block
+                                   mt-4
+                                   bg-green-100
+                                   text-green-800
+                                   text-sm
+                                   font-medium
+                                   px-3 py-1
+                                   rounded-full"
                         >
                             {{ $place->category->name }}
                         </span>
@@ -503,14 +514,14 @@
 
                         {{-- DESCRIPTION --}}
                         <p class="text-gray-600 mt-4 leading-relaxed">
-                            {{ $place->description }}
+                            {{ \Illuminate\Support\Str::limit($place->description, 130) }}
                         </p>
 
 
-                        {{-- ENTRY FEE --}}
+                        {{-- FEE --}}
                         <div class="mt-5">
 
-                            <p class="text-sm text-gray-500">
+                            <p class="text-xs uppercase tracking-wide text-gray-400 font-semibold">
                                 Entry Fee
                             </p>
 
@@ -531,14 +542,74 @@
                         </div>
 
 
-                        {{-- =================================================
-                             EDIT PLACE
-                        ================================================== --}}
-                        <div class="mt-7 pt-6 border-t border-gray-200">
+                        {{-- ACTIONS --}}
+                        <div class="grid grid-cols-2 gap-3 mt-6">
 
-                            <h4 class="text-lg font-bold text-gray-900 mb-5">
+                            {{-- EDIT BUTTON --}}
+                            <button
+                                type="button"
+                                onclick="toggleEdit({{ $place->id }})"
+                                class="bg-blue-600
+                                       text-white
+                                       px-4 py-2.5
+                                       rounded-lg
+                                       font-semibold
+                                       hover:bg-blue-700
+                                       transition"
+                            >
                                 Edit Place
-                            </h4>
+                            </button>
+
+
+                            {{-- DELETE --}}
+                            <form
+                                action="{{ route('places.destroy', $place) }}"
+                                method="POST"
+                            >
+
+                                @csrf
+                                @method('DELETE')
+
+
+                                <button
+                                    type="submit"
+                                    onclick="return confirm('Are you sure you want to delete {{ $place->name }}?')"
+                                    class="w-full
+                                           border border-red-200
+                                           text-red-600
+                                           px-4 py-2.5
+                                           rounded-lg
+                                           font-semibold
+                                           hover:bg-red-50
+                                           transition"
+                                >
+                                    Delete
+                                </button>
+
+                            </form>
+
+                        </div>
+
+
+                        {{-- =================================================
+                             HIDDEN EDIT FORM
+                        ================================================== --}}
+                        <div
+                            id="editForm{{ $place->id }}"
+                            class="hidden mt-7 pt-6 border-t border-gray-200"
+                        >
+
+                            <div class="mb-5">
+
+                                <h4 class="text-lg font-bold text-gray-900">
+                                    Edit {{ $place->name }}
+                                </h4>
+
+                                <p class="text-sm text-gray-500 mt-1">
+                                    Update the destination information below.
+                                </p>
+
+                            </div>
 
 
                             <form
@@ -562,7 +633,7 @@
                                         type="text"
                                         name="name"
                                         value="{{ $place->name }}"
-                                        class="w-full border border-gray-300 rounded-lg px-3 py-2
+                                        class="w-full border border-gray-300 rounded-lg px-3 py-2.5
                                                focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     >
 
@@ -580,7 +651,7 @@
                                         type="text"
                                         name="region"
                                         value="{{ $place->region }}"
-                                        class="w-full border border-gray-300 rounded-lg px-3 py-2
+                                        class="w-full border border-gray-300 rounded-lg px-3 py-2.5
                                                focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     >
 
@@ -596,7 +667,7 @@
 
                                     <select
                                         name="category_id"
-                                        class="w-full border border-gray-300 rounded-lg px-3 py-2
+                                        class="w-full border border-gray-300 rounded-lg px-3 py-2.5
                                                focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     >
 
@@ -616,7 +687,7 @@
                                 </div>
 
 
-                                {{-- ENTRY FEE --}}
+                                {{-- FEE --}}
                                 <div class="mb-4">
 
                                     <label class="block text-sm font-medium text-gray-700 mb-2">
@@ -629,7 +700,7 @@
                                         min="0"
                                         name="entry_fee"
                                         value="{{ $place->entry_fee }}"
-                                        class="w-full border border-gray-300 rounded-lg px-3 py-2
+                                        class="w-full border border-gray-300 rounded-lg px-3 py-2.5
                                                focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     >
 
@@ -637,7 +708,7 @@
 
 
                                 {{-- DESCRIPTION --}}
-                                <div class="mb-5">
+                                <div class="mb-4">
 
                                     <label class="block text-sm font-medium text-gray-700 mb-2">
                                         Description
@@ -646,7 +717,7 @@
                                     <textarea
                                         name="description"
                                         rows="4"
-                                        class="w-full border border-gray-300 rounded-lg px-3 py-2
+                                        class="w-full border border-gray-300 rounded-lg px-3 py-2.5
                                                focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     >{{ $place->description }}</textarea>
 
@@ -680,12 +751,18 @@
 
                                         <label
                                             for="editImage{{ $place->id }}"
-                                            class="inline-flex items-center justify-center
-                                                   bg-blue-600 text-white
-                                                   px-4 py-2.5 rounded-lg
-                                                   text-sm font-medium
+                                            class="inline-flex
+                                                   items-center
+                                                   justify-center
+                                                   bg-blue-600
+                                                   text-white
+                                                   px-4 py-2.5
+                                                   rounded-lg
+                                                   text-sm
+                                                   font-semibold
                                                    cursor-pointer
-                                                   hover:bg-blue-700 transition"
+                                                   hover:bg-blue-700
+                                                   transition"
                                         >
                                             Choose Image
                                         </label>
@@ -729,44 +806,38 @@
                                 </div>
 
 
-                                {{-- UPDATE --}}
-                                <button
-                                    type="submit"
-                                    class="w-full
-                                           bg-blue-600 text-white
-                                           px-4 py-2.5 rounded-lg
-                                           font-medium
-                                           hover:bg-blue-700 transition"
-                                >
-                                    Update Place
-                                </button>
+                                {{-- SAVE + CANCEL --}}
+                                <div class="grid grid-cols-2 gap-3">
 
-                            </form>
-
-
-                            {{-- DELETE --}}
-                            <form
-                                action="{{ route('places.destroy', $place) }}"
-                                method="POST"
-                                class="mt-3"
-                            >
-
-                                @csrf
-                                @method('DELETE')
+                                    <button
+                                        type="submit"
+                                        class="bg-green-700
+                                               text-white
+                                               px-4 py-2.5
+                                               rounded-lg
+                                               font-semibold
+                                               hover:bg-green-800
+                                               transition"
+                                    >
+                                        Save Changes
+                                    </button>
 
 
-                                <button
-                                    type="submit"
-                                    onclick="return confirm('Are you sure you want to delete {{ $place->name }}?')"
-                                    class="w-full
-                                           border border-red-200
-                                           text-red-600
-                                           px-4 py-2.5 rounded-lg
-                                           font-medium
-                                           hover:bg-red-50 transition"
-                                >
-                                    Delete Place
-                                </button>
+                                    <button
+                                        type="button"
+                                        onclick="toggleEdit({{ $place->id }})"
+                                        class="border border-gray-300
+                                               text-gray-700
+                                               px-4 py-2.5
+                                               rounded-lg
+                                               font-semibold
+                                               hover:bg-gray-100
+                                               transition"
+                                    >
+                                        Cancel
+                                    </button>
+
+                                </div>
 
                             </form>
 
@@ -774,19 +845,35 @@
 
                     </div>
 
-                </div>
+                </article>
 
 
             @empty
 
-                {{-- NO RESULTS --}}
                 <div
-                    class="md:col-span-2 lg:col-span-3
-                           bg-white border border-gray-200
-                           rounded-2xl p-12 text-center"
+                    class="md:col-span-2
+                           lg:col-span-3
+                           bg-white
+                           border border-gray-200
+                           rounded-2xl
+                           p-12
+                           text-center"
                 >
 
-                    <h3 class="text-xl font-bold text-gray-900">
+                    <div
+                        class="w-14 h-14
+                               mx-auto
+                               rounded-full
+                               bg-gray-100
+                               flex items-center
+                               justify-center
+                               text-2xl"
+                    >
+                        🔎
+                    </div>
+
+
+                    <h3 class="text-xl font-bold text-gray-900 mt-4">
                         No places found
                     </h3>
 
@@ -801,5 +888,22 @@
         </div>
 
     </section>
+
+
+    {{-- =========================================================
+         JAVASCRIPT
+    ========================================================== --}}
+    <script>
+
+        function toggleEdit(placeId) {
+
+            const editForm =
+                document.getElementById('editForm' + placeId);
+
+            editForm.classList.toggle('hidden');
+
+        }
+
+    </script>
 
 @endsection

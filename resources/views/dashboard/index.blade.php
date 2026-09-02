@@ -4,87 +4,83 @@
 
 @section('content')
 
-
     {{-- =========================================================
-         HERO / PAGE HEADER
+         HERO
     ========================================================== --}}
-    <section class="mb-12">
+    <section class="mb-14">
 
         <div
-            class="bg-white
-                   border border-gray-200
-                   rounded-2xl
-                   p-8 md:p-10
-                   shadow-sm"
+            class="relative overflow-hidden
+                   bg-linear-to-br
+                   from-green-900
+                   via-green-800
+                   to-green-700
+                   rounded-3xl
+                   px-7 py-10
+                   md:px-12 md:py-14
+                   shadow-lg"
         >
 
+            {{-- DECORATIVE CIRCLES --}}
             <div
-                class="flex flex-col
-                       md:flex-row
-                       md:items-center
-                       md:justify-between
-                       gap-6"
-            >
+                class="absolute
+                       -right-20 -top-20
+                       w-72 h-72
+                       rounded-full
+                       bg-white/5"
+            ></div>
+
+            <div
+                class="absolute
+                       right-32 -bottom-24
+                       w-56 h-56
+                       rounded-full
+                       bg-white/5"
+            ></div>
 
 
-                {{-- LEFT SIDE --}}
-                <div>
+            <div class="relative max-w-3xl">
 
-                    <p
-                        class="text-green-700
-                               font-semibold
-                               text-sm
-                               uppercase
-                               tracking-wide
-                               mb-2"
-                    >
-                        Lebanon Explorer
-                    </p>
+                <h1
+                    class="text-3xl
+                           md:text-5xl
+                           font-bold
+                           text-white
+                           leading-tight"
+                >
+                    Discover the beauty of Lebanon.
+                </h1>
 
 
-                    <h1
-                        class="text-3xl
-                               md:text-4xl
-                               font-bold
-                               text-gray-900"
-                    >
-                        Discover Lebanon
-                    </h1>
+                <p
+                    class="text-green-100
+                           text-lg
+                           mt-5
+                           max-w-2xl
+                           leading-relaxed"
+                >
+                    Explore remarkable natural, historical, and cultural
+                    destinations from across the country.
+                </p>
 
 
-                    <p
-                        class="text-gray-600
-                               mt-3
-                               max-w-2xl
-                               leading-relaxed"
-                    >
-                        Explore and manage some of Lebanon's most beautiful
-                        natural, historical, and cultural destinations.
-                    </p>
-
-                </div>
-
-
-
-                {{-- BUTTON --}}
-                <div>
+                <div class="mt-8">
 
                     <a
-                        href="{{ route('places.index') }}"
+                        href="{{ route('places.index') }}#explore-places"
                         class="inline-flex
-                               bg-green-700
-                               text-white
+                               bg-white
+                               text-green-800
                                px-6 py-3
-                               rounded-lg
-                               font-medium
-                               hover:bg-green-800
+                               rounded-xl
+                               font-bold
+                               hover:bg-green-50
                                transition"
                     >
-                        Explore Places
+                        Explore Destinations
                     </a>
 
                 </div>
-
 
             </div>
 
@@ -93,12 +89,10 @@
     </section>
 
 
-
     {{-- =========================================================
-         STATISTICS
+         OVERVIEW
     ========================================================== --}}
     <section class="mb-14">
-
 
         <div class="mb-6">
 
@@ -107,19 +101,13 @@
             </h2>
 
             <p class="text-gray-500 mt-1">
-                A quick overview of Lebanon Explorer.
+                A quick look at your Lebanon Explorer collection.
             </p>
 
         </div>
 
 
-
-        <div
-            class="grid grid-cols-1
-                   md:grid-cols-3
-                   gap-6"
-        >
-
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
             {{-- TOTAL PLACES --}}
             <div
@@ -127,24 +115,20 @@
                        border border-gray-200
                        rounded-2xl
                        p-6
-                       shadow-sm"
+                       shadow-sm
+                       hover:shadow-md
+                       transition"
             >
 
                 <div class="flex items-center justify-between">
 
                     <div>
 
-                        <p class="text-gray-500 font-medium">
-                            Total Places
+                        <p class="text-sm font-semibold text-gray-500">
+                            TOTAL PLACES
                         </p>
 
-
-                        <p
-                            class="text-4xl
-                                   font-bold
-                                   text-gray-900
-                                   mt-3"
-                        >
+                        <p class="text-4xl font-bold text-gray-900 mt-3">
                             {{ $totalPlaces }}
                         </p>
 
@@ -152,16 +136,14 @@
 
 
                     <div
-                        class="w-12 h-12
-                               rounded-xl
+                        class="w-14 h-14
+                               rounded-2xl
                                bg-green-100
                                flex items-center
                                justify-center
-                               text-green-700
-                               text-xl
-                               font-bold"
+                               text-2xl"
                     >
-                        P
+                        📍
                     </div>
 
                 </div>
@@ -169,31 +151,26 @@
             </div>
 
 
-
-            {{-- TOTAL CATEGORIES --}}
+            {{-- CATEGORIES --}}
             <div
                 class="bg-white
                        border border-gray-200
                        rounded-2xl
                        p-6
-                       shadow-sm"
+                       shadow-sm
+                       hover:shadow-md
+                       transition"
             >
 
                 <div class="flex items-center justify-between">
 
                     <div>
 
-                        <p class="text-gray-500 font-medium">
-                            Categories
+                        <p class="text-sm font-semibold text-gray-500">
+                            CATEGORIES
                         </p>
 
-
-                        <p
-                            class="text-4xl
-                                   font-bold
-                                   text-gray-900
-                                   mt-3"
-                        >
+                        <p class="text-4xl font-bold text-gray-900 mt-3">
                             {{ $totalCategories }}
                         </p>
 
@@ -201,22 +178,19 @@
 
 
                     <div
-                        class="w-12 h-12
-                               rounded-xl
+                        class="w-14 h-14
+                               rounded-2xl
                                bg-blue-100
                                flex items-center
                                justify-center
-                               text-blue-700
-                               text-xl
-                               font-bold"
+                               text-2xl"
                     >
-                        C
+                        🗂️
                     </div>
 
                 </div>
 
             </div>
-
 
 
             {{-- FEATURED --}}
@@ -225,24 +199,20 @@
                        border border-gray-200
                        rounded-2xl
                        p-6
-                       shadow-sm"
+                       shadow-sm
+                       hover:shadow-md
+                       transition"
             >
 
                 <div class="flex items-center justify-between">
 
                     <div>
 
-                        <p class="text-gray-500 font-medium">
-                            Featured Places
+                        <p class="text-sm font-semibold text-gray-500">
+                            FEATURED
                         </p>
 
-
-                        <p
-                            class="text-4xl
-                                   font-bold
-                                   text-gray-900
-                                   mt-3"
-                        >
+                        <p class="text-4xl font-bold text-gray-900 mt-3">
                             {{ $featuredCount }}
                         </p>
 
@@ -250,27 +220,23 @@
 
 
                     <div
-                        class="w-12 h-12
-                               rounded-xl
+                        class="w-14 h-14
+                               rounded-2xl
                                bg-yellow-100
                                flex items-center
                                justify-center
-                               text-yellow-700
-                               text-xl
-                               font-bold"
+                               text-2xl"
                     >
-                        ★
+                        ⭐
                     </div>
 
                 </div>
 
             </div>
 
-
         </div>
 
     </section>
-
 
 
     {{-- =========================================================
@@ -278,11 +244,11 @@
     ========================================================== --}}
     <section class="mb-14">
 
-
-        {{-- SECTION HEADER --}}
         <div
-            class="flex items-end
-                   justify-between
+            class="flex flex-col
+                   sm:flex-row
+                   sm:items-end
+                   sm:justify-between
                    gap-4
                    mb-6"
         >
@@ -294,78 +260,90 @@
                 </h2>
 
                 <p class="text-gray-500 mt-1">
-                    Highlighted places worth discovering.
+                    A selection of highlighted places to discover.
                 </p>
 
             </div>
 
 
             <a
-                href="{{ route('places.index') }}"
+                href="{{ route('places.index') }}#explore-places"
                 class="text-green-700
-                       font-semibold
+                       font-bold
                        hover:text-green-800"
             >
-                View All
+                View all places →
             </a>
 
         </div>
 
 
-
-        {{-- FEATURED CARDS --}}
-        <div
-            class="grid grid-cols-1
-                   md:grid-cols-2
-                   lg:grid-cols-3
-                   gap-8"
-        >
-
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
             @forelse ($featuredPlaces as $place)
 
-
-                <div
-                    class="bg-white
+                <article
+                    class="group
+                           bg-white
                            rounded-2xl
                            overflow-hidden
                            border border-gray-200
-                           shadow-sm"
+                           shadow-sm
+                           hover:shadow-lg
+                           transition
+                           duration-300"
                 >
 
+                    <div class="relative overflow-hidden">
 
-                    {{-- IMAGE --}}
-                    @if ($place->image)
+                        @if ($place->image)
 
-                        <img
-                            src="{{ asset('storage/' . $place->image) }}"
-                            alt="{{ $place->name }}"
-                            class="w-full h-56 object-cover"
+                            <img
+                                src="{{ asset('storage/' . $place->image) }}"
+                                alt="{{ $place->name }}"
+                                class="w-full h-60
+                                       object-cover
+                                       group-hover:scale-105
+                                       transition-transform
+                                       duration-500"
+                            >
+
+                        @else
+
+                            <img
+                                src="{{ asset('images/place-placeholder.jpg') }}"
+                                alt="Place placeholder"
+                                class="w-full h-60 object-cover"
+                            >
+
+                        @endif
+
+
+                        <span
+                            class="absolute
+                                   top-4 right-4
+                                   bg-white/95
+                                   text-yellow-700
+                                   text-xs
+                                   font-bold
+                                   px-3 py-1.5
+                                   rounded-full
+                                   shadow"
                         >
+                            ★ Featured
+                        </span>
 
-                    @else
-
-                        <img
-                            src="{{ asset('images/place-placeholder.jpg') }}"
-                            alt="Place placeholder"
-                            class="w-full h-56 object-cover"
-                        >
-
-                    @endif
+                    </div>
 
 
-
-                    {{-- CONTENT --}}
                     <div class="p-6">
 
-
-                        {{-- CATEGORY --}}
                         <span
                             class="inline-block
                                    bg-green-100
                                    text-green-800
                                    text-sm
-                                   font-medium
+                                   font-semibold
                                    px-3 py-1
                                    rounded-full"
                         >
@@ -373,55 +351,29 @@
                         </span>
 
 
-
-                        {{-- NAME --}}
-                        <h3
-                            class="text-xl
-                                   font-bold
-                                   text-gray-900
-                                   mt-4"
-                        >
+                        <h3 class="text-xl font-bold text-gray-900 mt-4">
                             {{ $place->name }}
                         </h3>
 
 
-
-                        {{-- REGION --}}
-                        <p class="text-gray-500 mt-2">
+                        <p class="text-gray-500 mt-1">
                             {{ $place->region }}
                         </p>
 
 
-
-                        {{-- DESCRIPTION --}}
-                        <p
-                            class="text-gray-600
-                                   mt-4
-                                   leading-relaxed"
-                        >
-                            {{ \Illuminate\Support\Str::limit($place->description, 100) }}
+                        <p class="text-gray-600 mt-4 leading-relaxed">
+                            {{ \Illuminate\Support\Str::limit($place->description, 105) }}
                         </p>
 
 
+                        <div class="mt-5 pt-4 border-t border-gray-100">
 
-                        {{-- ENTRY FEE --}}
-                        <div
-                            class="mt-5
-                                   pt-4
-                                   border-t
-                                   border-gray-100"
-                        >
-
-                            <p class="text-sm text-gray-500">
+                            <span class="text-sm text-gray-500">
                                 Entry Fee
-                            </p>
+                            </span>
 
 
-                            <p
-                                class="font-bold
-                                       text-gray-900
-                                       mt-1"
-                            >
+                            <p class="font-bold text-gray-900 mt-1">
 
                                 @if ($place->entry_fee !== null)
 
@@ -437,14 +389,11 @@
 
                         </div>
 
-
                     </div>
 
-                </div>
-
+                </article>
 
             @empty
-
 
                 <div
                     class="md:col-span-2
@@ -452,36 +401,35 @@
                            bg-white
                            border border-gray-200
                            rounded-2xl
-                           p-10
+                           p-12
                            text-center"
                 >
 
-                    <h3 class="font-bold text-gray-900">
+                    <div class="text-4xl">
+                        ⭐
+                    </div>
+
+                    <h3 class="text-lg font-bold text-gray-900 mt-4">
                         No featured destinations yet
                     </h3>
 
-
                     <p class="text-gray-500 mt-2">
-                        Mark a place as featured and it will appear here.
+                        Mark a place as featured to display it here.
                     </p>
 
                 </div>
 
-
             @endforelse
-
 
         </div>
 
     </section>
 
 
-
     {{-- =========================================================
          RECENTLY ADDED
     ========================================================== --}}
     <section>
-
 
         <div class="mb-6">
 
@@ -496,18 +444,15 @@
         </div>
 
 
-
         <div
             class="bg-white
-                   rounded-2xl
                    border border-gray-200
-                   shadow-sm
-                   overflow-hidden"
+                   rounded-2xl
+                   overflow-hidden
+                   shadow-sm"
         >
 
-
             @forelse ($recentPlaces as $place)
-
 
                 <div
                     class="flex flex-col
@@ -517,11 +462,11 @@
                            p-5
                            border-b
                            border-gray-100
-                           last:border-b-0"
+                           last:border-b-0
+                           hover:bg-gray-50
+                           transition"
                 >
 
-
-                    {{-- IMAGE --}}
                     @if ($place->image)
 
                         <img
@@ -529,7 +474,8 @@
                             alt="{{ $place->name }}"
                             class="w-full
                                    sm:w-24
-                                   h-24
+                                   h-28
+                                   sm:h-24
                                    object-cover
                                    rounded-xl"
                         >
@@ -541,7 +487,8 @@
                             alt="Place placeholder"
                             class="w-full
                                    sm:w-24
-                                   h-24
+                                   h-28
+                                   sm:h-24
                                    object-cover
                                    rounded-xl"
                         >
@@ -549,40 +496,24 @@
                     @endif
 
 
-
-                    {{-- PLACE INFO --}}
                     <div class="flex-1">
 
-
-                        <h3
-                            class="text-lg
-                                   font-bold
-                                   text-gray-900"
-                        >
+                        <h3 class="text-lg font-bold text-gray-900">
                             {{ $place->name }}
                         </h3>
 
-
-                        <p class="text-gray-500 mt-1">
+                        <p class="text-gray-500 text-sm mt-1">
                             {{ $place->region }}
                         </p>
 
-
-                        <p
-                            class="text-gray-600
-                                   text-sm
-                                   mt-2"
-                        >
-                            {{ \Illuminate\Support\Str::limit($place->description, 90) }}
+                        <p class="text-gray-600 text-sm mt-2">
+                            {{ \Illuminate\Support\Str::limit($place->description, 100) }}
                         </p>
-
 
                     </div>
 
 
-
-                    {{-- CATEGORY --}}
-                    <div>
+                    <div class="flex sm:flex-col sm:items-end gap-2">
 
                         <span
                             class="inline-block
@@ -598,33 +529,30 @@
 
                     </div>
 
-
                 </div>
-
 
             @empty
 
+                <div class="p-12 text-center">
 
-                <div class="p-10 text-center">
+                    <div class="text-4xl">
+                        📍
+                    </div>
 
-                    <h3 class="font-bold text-gray-900">
-                        No places yet
+                    <h3 class="text-lg font-bold text-gray-900 mt-4">
+                        No destinations yet
                     </h3>
 
-
                     <p class="text-gray-500 mt-2">
-                        Add your first destination from the Places page.
+                        Add your first place from the Places page.
                     </p>
 
                 </div>
 
-
             @endforelse
-
 
         </div>
 
     </section>
-
 
 @endsection

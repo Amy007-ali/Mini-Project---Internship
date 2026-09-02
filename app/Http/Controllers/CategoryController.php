@@ -7,18 +7,26 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function index() {
+    /**
+     * Display all categories.
+     */
+    public function index()
+    {
         $categories = Category::withCount('places')
-            ->latest()
+            ->orderBy('name')
             ->get();
 
         return view('categories.index', compact('categories'));
     }
 
-    public function store(Request $request) {
+
+    /**
+     * Store a new category.
+     */
+    public function store(Request $request)
+    {
         $validated = $request->validate([
             'name' => 'required|string|max:255|unique:categories,name',
-            'description' => 'nullable|string',
         ]);
 
         Category::create($validated);
@@ -28,10 +36,14 @@ class CategoryController extends Controller
             ->with('success', 'Category added successfully.');
     }
 
-    public function update(Request $request, Category $category) {
+
+    /**
+     * Update a category.
+     */
+    public function update(Request $request, Category $category)
+    {
         $validated = $request->validate([
             'name' => 'required|string|max:255|unique:categories,name,' . $category->id,
-            'description' => 'nullable|string',
         ]);
 
         $category->update($validated);
@@ -41,11 +53,20 @@ class CategoryController extends Controller
             ->with('success', 'Category updated successfully.');
     }
 
-    public function destroy(Category $category) {
+
+    /**
+     * Delete a category.
+     */
+    public function destroy(Category $category)
+    {
         if ($category->places()->exists()) {
+
             return redirect()
                 ->route('categories.index')
-                ->with('error', 'This category cannot be deleted because it contains places.');
+                ->with(
+                    'error',
+                    'This category cannot be deleted because it contains places.'
+                );
         }
 
         $category->delete();
