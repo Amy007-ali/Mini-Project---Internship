@@ -2,60 +2,165 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <title>@yield('title', 'Lebanon Explorer')</title>
+    <title>
+        @yield('title', 'Lebanon Explorer')
+    </title>
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite([
+        'resources/css/app.css',
+        'resources/js/app.js'
+    ])
+
 </head>
 
-<body class="bg-gray-100 text-gray-900">
 
+<body class="bg-gray-100 text-gray-900 min-h-screen">
+
+
+    {{-- =========================================================
+         NAVBAR
+    ========================================================== --}}
     <nav class="bg-white border-b border-gray-200">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
 
-            <a href="{{ route('places.index') }}"
-               class="text-xl font-bold">
-                Lebanon Explorer
+        <div
+            class="max-w-7xl mx-auto px-6 py-4
+                   flex items-center justify-between"
+        >
+
+
+            {{-- LOGO --}}
+            <a
+                href="{{ route('dashboard') }}"
+                class="flex items-center gap-3"
+            >
+
+                <img
+                    src="{{ asset('images/logo.png') }}"
+                    alt="Lebanon Explorer Logo"
+                    class="w-10 h-10 object-contain"
+                >
+
+                <span class="text-xl font-bold text-gray-900">
+                    Lebanon Explorer
+                </span>
+
             </a>
 
-            <div class="flex gap-6">
 
-                <a href="{{ route('places.index') }}"
-                   class="hover:text-green-700">
+
+            {{-- NAVIGATION LINKS --}}
+            <div class="flex items-center gap-7">
+
+
+                {{-- DASHBOARD --}}
+                <a
+                    href="{{ route('dashboard') }}"
+                    class="
+                        font-medium transition
+                        {{ request()->routeIs('dashboard')
+                            ? 'text-green-700'
+                            : 'text-gray-700 hover:text-green-700'
+                        }}
+                    "
+                >
+                    Dashboard
+                </a>
+
+
+                {{-- PLACES --}}
+                <a
+                    href="{{ route('places.index') }}"
+                    class="
+                        font-medium transition
+                        {{ request()->routeIs('places.*')
+                            ? 'text-green-700'
+                            : 'text-gray-700 hover:text-green-700'
+                        }}
+                    "
+                >
                     Places
                 </a>
 
-                <a href="{{ route('categories.index') }}"
-                   class="hover:text-green-700">
+
+                {{-- CATEGORIES --}}
+                <a
+                    href="{{ route('categories.index') }}"
+                    class="
+                        font-medium transition
+                        {{ request()->routeIs('categories.*')
+                            ? 'text-green-700'
+                            : 'text-gray-700 hover:text-green-700'
+                        }}
+                    "
+                >
                     Categories
                 </a>
+
 
             </div>
 
         </div>
+
     </nav>
 
-    <main class="max-w-7xl mx-auto px-6 py-8">
 
+
+    {{-- =========================================================
+         MAIN CONTENT
+    ========================================================== --}}
+    <main class="max-w-7xl mx-auto px-6 py-10">
+
+
+        {{-- SUCCESS MESSAGE --}}
         @if (session('success'))
-            <div class="mb-6 rounded-lg bg-green-100 px-4 py-3 text-green-800">
+
+            <div
+                class="mb-8
+                       rounded-xl
+                       bg-green-100
+                       border border-green-200
+                       px-5 py-4
+                       text-green-800"
+            >
                 {{ session('success') }}
             </div>
+
         @endif
 
+
+
+        {{-- ERROR MESSAGE --}}
         @if (session('error'))
-            <div class="mb-6 rounded-lg bg-red-100 px-4 py-3 text-red-800">
+
+            <div
+                class="mb-8
+                       rounded-xl
+                       bg-red-100
+                       border border-red-200
+                       px-5 py-4
+                       text-red-800"
+            >
                 {{ session('error') }}
             </div>
+
         @endif
 
+
+
+        {{-- PAGE CONTENT --}}
         @yield('content')
 
+
     </main>
+
 
 </body>
 
