@@ -11,7 +11,7 @@
 
         <div
             class="relative overflow-hidden
-                   bg-gradient-to-br
+                   bg-linear-to-br
                    from-green-900
                    via-green-800
                    to-green-700
